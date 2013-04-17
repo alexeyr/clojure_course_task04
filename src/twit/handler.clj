@@ -26,40 +26,42 @@
 
 (defn show-timeline []
   (req-logged-in false
-    (fn [id] (view/show-timeline
-               (model/select-followed-users id)
-               (model/select-unfollowed-users id)
-               (model/select-messages id)
-               (session/flash-get)))))
+    (fn [id]
+      (view/show-timeline
+        (model/select-followed-users id)
+        (model/select-unfollowed-users id)
+        (model/select-messages id)
+        (session/flash-get :msg)))))
 
 (defn post [message]
   (req-logged-in 
     true
-    #(model/create-message (assoc message :user_id %))))
+    (fn [id] (model/create-message (assoc message :user_id id)))))
 
 (defn show-login []
-  (view/show-login (session/flash-get)))
+  (view/show-login (session/flash-get :msg)))
 
 (defn follow [followed-id]
   (req-logged-in 
     true
     (fn [id]
-      (model/follow id followed-id))))
+      (model/do-follow id followed-id))))
 
 (defn unfollow [followed-id]
   (req-logged-in 
     true
     (fn [id]
-      (model/unfollow id followed-id))))
+      (model/do-unfollow id followed-id))))
 
-(defn login [params]
-  (if-let [user-id (model/check-password params)]
+(defn login [username password]
+  (if-let [{user-id :id} (model/check-password username password)]
     (do
       (session/put! :user-id user-id)
       (redirect-timeline))
     (do
-      (session/flash-put! "Failed to login")
-      (redirect-login))))
+      (session/flash-put! :msg "Failed to login")
+      (redirect-login)))
+  )
 
 (defn logout []
   (req-logged-in 
@@ -67,7 +69,7 @@
     (fn [id]
       (do
         (session/clear!)
-        (session/flash-put! "Logged out")
+        (session/flash-put! :msg "Logged out")
         (redirect-login)))))
 
 (defroutes app-routes
@@ -80,7 +82,7 @@
   (POST "/post" req (post (:params req)))
   (POST "/follow/:id" [id] (follow (Integer/parseInt id)))
   (POST "/unfollow/:id" [id] (unfollow (Integer/parseInt id)))
-  (POST "/login" req (login (:params req)))
+  (POST "/login" [username password] (login username password))
   (POST "/logout" req (logout))
 
   (route/resources "/")

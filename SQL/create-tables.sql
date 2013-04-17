@@ -1,20 +1,20 @@
 drop table if exists users;
 create table users (
-  id integer primary key autoincrement,
+  id serial primary key,
   username text not null,
-  password text not null // TODO hash
+  password text not null
 );
 
 drop table if exists follow;
 create table follow (
-  id integer primary key autoincrement,
+  id serial primary key,
   follower_id integer not null references users (id),
   followed_id integer not null references users (id)
 );
 
 drop table if exists messages;
 create table messages (
-  id integer primary key autoincrement,
+  id serial primary key,
   user_id integer not null references users (id),
   body text not null,
   ts timestamp not null default now()

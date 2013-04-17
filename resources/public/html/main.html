@@ -50,6 +50,10 @@
 <div class="page">
   <span id="flash" class="bg-color-red fg-color-white"/><br>
   <div class="page-region-content">
+    <form action="/logout" method="post">
+      <input type="submit" value="Log out" class="button bg-color-green fg-color-white"/>
+    </form>
+    Followed users:
     <div id="followed-user-holder" class="grid" style="padding-top: 15px;">
 
      <!-- Everything inside "main-loc" will be deleted! -->
@@ -59,7 +63,7 @@
      <div class="hero-unit">
       <span>
       </span>
-      <form>
+      <form method="post">
         <input type="submit"/>
       </form>
     </div>
@@ -76,13 +80,15 @@
 </div>
 </div>
 </div>
+    Other users:
 <div id="unfollowed-user-holder" class="grid" style="padding-top: 15px;"/>
+Messages:
 <div id="message-holder" class="grid" style="padding-top: 15px;"/>
 </div>
 
 <div style="padding-top: 15px;">
-  <form name="post" action="/post">
-   Message: <textarea name="body" rows="5" columns="30"/>
+  <form name="post" action="/post" method="post">
+   Message: <textarea name="body" rows="5" columns="30"/><br>
    <input type="submit" value="Post"/>
  </form>
 </div>
