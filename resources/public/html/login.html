@@ -30,72 +30,27 @@
 <script type="text/javascript" src="/js/tile-drag.js"></script>
 <script type="text/javascript" src="/js/calendar.js"></script>
 
-<title>Twit</title>
+<title>Login</title>
 </head>
 <body class="metrouicss" onload="prettyPrint()">
 
-  <div class="page">
-    <div class="nav-bar">
-     <div class="nav-bar-inner padding10">
-      <span class="pull-menu"></span>
+    <div class="page">
+        <span id="flash" class="bg-color-red fg-color-white"/><br>
+        <form name="login" action="/login">
+         User name: <input type="text" name="username"/><br>
+         Password: <input type="password" name="password"/><br>
+         <input type="submit" value="Login" class="button bg-color-green fg-color-white">
+     </div>
 
-      <a href="/"><span class="element brand">
-        Twit
-      </span></a>
-
-    </div>
-  </div>
-</div>
-
-<div class="page">
-  <span id="flash" class="bg-color-red fg-color-white"/><br>
-  <div class="page-region-content">
-    <div id="followed-user-holder" class="grid" style="padding-top: 15px;">
-
-     <!-- Everything inside "main-loc" will be deleted! -->
-
-  <div class="row" id="user-row">
-    <div class="span12">
-     <div class="hero-unit">
-      <span>
-      </span>
-      <form>
-        <input type="submit"/>
-      </form>
-    </div>
-  </div>
-</div>
-
- <div class="row" id="message-row">
-  <div class="span12">
-   <div class="hero-unit">
-    <h2></h2>
-    <span>
-    </span>  
-  </div>
-</div>
-</div>
-</div>
-<div id="unfollowed-user-holder" class="grid" style="padding-top: 15px;"/>
-<div id="message-holder" class="grid" style="padding-top: 15px;"/>
-</div>
-
-<div style="padding-top: 15px;">
-  <form name="post" action="/post">
-   Message: <textarea name="body" rows="5" columns="30"/>
-   <input type="submit" value="Post"/>
- </form>
-</div>
-
-<div class="page">
-  <div class="nav-bar">
-   <div class="nav-bar-inner padding10">
-     <span class="element">
-       Styled with <a class="fg-color-white" href="http://metroui.org.ua">Metro UI CSS</a> 
-     </span>
+     <div class="page">
+      <div class="nav-bar">
+       <div class="nav-bar-inner padding10">
+         <span class="element">
+           Styled with <a class="fg-color-white" href="http://metroui.org.ua">Metro UI CSS</a> 
+       </span>
    </div>
- </div>
 </div>
-
+</div>
+</div>    
 </body>
 </html>

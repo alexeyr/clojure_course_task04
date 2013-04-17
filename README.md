@@ -1,8 +1,8 @@
 # Пример простого блога на Clojure
 
-Пример задеплоен здесь: http://helloworld-writing.rhcloud.com/articles
+Пример задеплоен здесь: http://helloworld-writing.rhcloud.com/messages
 
-Никакого логина не требуется. Реализованы операции CRUD для объекта article.
+Никакого логина не требуется. Реализованы операции CRUD для объекта message.
 
 ## Running
 
