@@ -5,7 +5,7 @@
 (def env (into {} (System/getenv)))
 
 (def dbhost (get env "OPENSHIFT_POSTGRESQL_DB_HOST" "localhost"))
-(def dbport (get env "OPENSHIFT_POSTGRESQL_DB_PORT" 5432))
+(def dbport (Integer/parseInt (get env "OPENSHIFT_POSTGRESQL_DB_PORT" "5432")))
 (def dbuser (get env "OPENSHIFT_POSTGRESQL_DB_USER" "postgres"))
 (def dbpassword (get env "OPENSHIFT_POSTGRESQL_DB_PASSWORD" "postgres"))
 (def dbname (get env "OPENSHIFT_POSTGRESQL_DB_NAME" "twit"))
